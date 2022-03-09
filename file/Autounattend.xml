@@ -105,26 +105,11 @@
             <RunSynchronous>
                 <RunSynchronousCommand wcm:action="add">
                     <Order>1</Order>
-                    <Path>powershell -NoLogo -Command "Invoke-WebRequest -Uri "https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win-guest-tools.exe" -OutFile c:\Windows\Temp\virtio-win-guest-tools.exe"</Path>
-                    <Description>Downloading VirtIO Guest Tools</Description>
-                </RunSynchronousCommand>
-                <RunSynchronousCommand wcm:action="add">
-                    <Order>2</Order>
-                    <Path>powershell -NoLogo -Command "Invoke-WebRequest -Uri https://www.cloudbase.it/downloads/CloudbaseInitSetup_x64.msi -OutFile c:\Windows\Temp\CloudbaseInitSetup_x64.msi"</Path>
-                    <Description>Downloading CloudbaseInit</Description>
-                </RunSynchronousCommand>
-                <RunSynchronousCommand wcm:action="add">
-                    <Order>3</Order>
-                    <Path>powershell -NoLogo -Command "Invoke-WebRequest -Uri https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win-gt-x64.msi -OutFile c:\Windows\Temp\virtio-win-gt-x64.msi"</Path>
-                    <Description>Downloading VirtioDriver</Description>
-                </RunSynchronousCommand>
-                <RunSynchronousCommand wcm:action="add">
-                    <Order>4</Order>
                     <Path>powershell -NoLogo -Command "Invoke-WebRequest -Uri https://community.chocolatey.org/install.ps1 -OutFile c:\Windows\Temp\install.ps1"</Path>
                     <Description>Installing Choco</Description>
                 </RunSynchronousCommand>
                  <RunSynchronousCommand wcm:action="add">
-                    <Order>5</Order>
+                    <Order>2</Order>
                     <Path>powershell -NoLogo -Command "invoke-expression -Command c:\Windows\Temp\install.ps1"</Path>
                     <Description>Installing Choco</Description>
                 </RunSynchronousCommand>
@@ -150,32 +135,8 @@
             </OOBE>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -NoLogo -Command "choco install qemu-guest-agent -y"</CommandLine>
-                    <Order>1</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -NoLogo -Command "choco install cloudbaseinit -y"</CommandLine>
-                    <Order>2</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>msiexec /a C:\windows\Temp\virtio-win-gt-x64.msi /qb</CommandLine>
-                    <Order>3</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>C:\windows\system32\pnputil.exe /add-driver C:\Virtio-Win\Vioserial\*.inf /install</CommandLine>
-                    <Order>4</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>C:\windows\system32\pnputil.exe /add-driver C:\Virtio-Win\Balloon\*.inf /install</CommandLine>
-                    <Order>5</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>c:\Windows\Temp\virtio-win-guest-tools.exe /install /passive</CommandLine>
-                    <Order>6</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
                     <CommandLine>powershell -NoLogo -Command "C:\Windows\System32\Sysprep\sysprep.exe /generalize /oobe /shutdown /unattend:E:\unattend.xml"</CommandLine>
-                    <Order>7</Order>
+                    <Order>1</Order>
                 </SynchronousCommand>
             </FirstLogonCommands>
             <AutoLogon>
