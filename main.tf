@@ -16,7 +16,7 @@ resource "hyperv_machine_instance" "ws2022" {
   network_adaptors {
       name = "lan"
       switch_name = "LAN"
-      wait_for_ips = false
+      wait_for_ips = false  
   }
 
   hard_disk_drives {
@@ -29,13 +29,13 @@ resource "hyperv_machine_instance" "ws2022" {
   dvd_drives {
     controller_number = 0
     controller_location = 1
-    path = "d:/iso/windows-server-2022.iso"
+    path = "d:/iso/windows-server-2022.iso" # save the file on that path
   }
   
   dvd_drives {
     controller_number = 1
     controller_location = 1
-    path = "d:/iso/Autounattend.iso"
+    path = "d:/iso/Autounattend.iso" # save the file on that path
   }
 
 }
