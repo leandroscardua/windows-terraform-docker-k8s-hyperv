@@ -113,6 +113,26 @@
                     <Path>powershell -NoLogo -Command "invoke-expression -Command c:\Windows\Temp\install.ps1"</Path>
                     <Description>Installing Choco</Description>
                 </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>3</Order>
+                    <Path>powershell -NoLogo -Command "Invoke-WebRequest -Uri https://raw.githubusercontent.com/leandroscardua/Kubernetes-Windows/master/windows-node-auto.ps1 -OutFile c:\Windows\Temp\windows-node-auto.ps1"</Path>
+                    <Description>Installing Reequirements Docker</Description>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>4</Order>
+                    <Path>powershell -NoLogo -Command "Invoke-WebRequest -Uri  https://raw.githubusercontent.com/leandroscardua/Kubernetes-Windows/master/Install-k8s-windows.ps1 -OutFile c:\Windows\Temp\Install-k8s-windows.ps1"</Path>
+                    <Description>Installing Reequirements Kubernetes</Description>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>5</Order>
+                    <Path>powershell -NoLogo -Command "invoke-expression -Command c:\Windows\Temp\windows-node-auto.ps1"</Path>
+                    <Description>Installing Choco</Description>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>6</Order>
+                    <Path>powershell -NoLogo -Command "invoke-expression -Command c:\Windows\Temp\Install-k8s-windows.ps1"</Path>
+                    <Description>Installing Choco</Description>
+                </RunSynchronousCommand>
             </RunSynchronous>
         </component>    
         <component name="Microsoft-Windows-OutOfBoxExperience" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -135,8 +155,12 @@
             </OOBE>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -NoLogo -Command "C:\Windows\System32\Sysprep\sysprep.exe /generalize /oobe /shutdown /unattend:E:\unattend.xml"</CommandLine>
+                    <CommandLine>powershell -NoLogo -Command "invoke-expression -Command c:\Windows\Temp\windows-node-auto.ps1</CommandLine>
                     <Order>1</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>powershell -NoLogo -Command "C:\Windows\System32\Sysprep\sysprep.exe /generalize /oobe /shutdown /unattend:E:\unattend.xml"</CommandLine>
+                    <Order>2</Order>
                 </SynchronousCommand>
             </FirstLogonCommands>
             <AutoLogon>
