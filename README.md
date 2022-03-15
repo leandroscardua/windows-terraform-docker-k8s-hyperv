@@ -1,3 +1,3 @@
-# windows-terraform-hyperv
+# windows-terraform-docker-k8s-hyperv
 
-windows-terraform-hyperv
+windows-terraform-docker-k8s-hyperv
