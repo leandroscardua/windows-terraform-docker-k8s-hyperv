@@ -38,8 +38,4 @@ resource "hyperv_machine_instance" "ws2022" {
     path = "d:/iso/Autounattend.iso"
   }
 
-  depends_on = [
-    hyperv_machine_instance.k8s-primary,
-  ]
-
 }
