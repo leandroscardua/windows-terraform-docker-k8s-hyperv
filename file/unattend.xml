@@ -49,8 +49,13 @@
             <RunSynchronous>
                 <RunSynchronousCommand wcm:action="add">
                     <Order>1</Order>
-                    <Path>powershell -NoLogo -Command "Rename-Computer -NewName (Get-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters').VirtualMachineName -Restart</Path>
+                    <Path>powershell -NoLogo -noexit -Command "invoke-expression -Command c:\Windows\Temp\Install-k8s-windows.ps1</Path>
                     <Description>Rename Computer</Description>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>2</Order>
+                    <Path>powershell -NoLogo -Command "Rename-Computer -NewName (Get-ItemProperty -path 'HKLM:\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters').VirtualMachineName -Restart</Path>
+                    <Description>Install K8s</Description>
                 </RunSynchronousCommand>
             </RunSynchronous>
         </component>
